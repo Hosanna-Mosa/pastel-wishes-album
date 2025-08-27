@@ -161,13 +161,7 @@ export default {
 				'sparkle': 'sparkle 2s ease-in-out infinite',
 				'heartbeat': 'heartbeat 1.5s ease-in-out infinite',
 				'slide-up': 'slide-up 0.6s ease-out',
-				'magical-bounce': 'bounce 1s ease-in-out infinite',
-				/* Creative Animations */
-				'morph-0': 'morph-0 15s ease-in-out infinite',
-				'morph-1': 'morph-1 17s ease-in-out infinite',
-				'morph-2': 'morph-2 19s ease-in-out infinite',
-				'morph-3': 'morph-3 21s ease-in-out infinite',
-				'morph-4': 'morph-4 23s ease-in-out infinite'
+				'magical-bounce': 'bounce 1s ease-in-out infinite'
 			}
 		}
 	},

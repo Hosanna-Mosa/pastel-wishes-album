@@ -4,12 +4,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import MagicalConfetti from '@/components/MagicalConfetti';
 import FloatingBalloons from '@/components/FloatingBalloons';
-import InteractiveParticles from '@/components/InteractiveParticles';
-import MorphingBackground from '@/components/MorphingBackground';
-import MagicalPhotoFrame from '@/components/MagicalPhotoFrame';
-import FlipCard from '@/components/FlipCard';
-import TypewriterText from '@/components/TypewriterText';
-import ParallaxSection from '@/components/ParallaxSection';
 
 // Import all the magical images
 import heroPortrait from '@/assets/hero-portrait.jpg';
@@ -69,103 +63,89 @@ const Index = () => {
 
   return (
     <div className="min-h-screen hero-gradient overflow-x-hidden">
-      {/* Creative Background Effects */}
-      <MorphingBackground />
-      <InteractiveParticles />
-      
       {/* Magical Effects */}
       {showConfetti && <MagicalConfetti />}
       <FloatingBalloons />
 
-      {/* Hero Section with Parallax */}
-      <ParallaxSection speed={0.3}>
-        <section className="min-h-screen flex items-center justify-center relative px-4">
-          <div className="text-center max-w-4xl mx-auto animate-slide-up">
-            <div className="mb-8 relative">
-              <MagicalPhotoFrame 
-                src={heroPortrait} 
-                alt="Birthday Girl"
-                size="lg"
-                className="mx-auto animate-float"
-              />
-              <div className="absolute -top-4 -right-4 animate-sparkle">
-                <Sparkles className="w-8 h-8 text-gold" />
-              </div>
-              <div className="absolute -bottom-4 -left-4 animate-sparkle" style={{ animationDelay: '1s' }}>
-                <Heart className="w-8 h-8 text-primary" />
-              </div>
-            </div>
-            
-            <TypewriterText 
-              text="Happy Birthday!"
-              className="cursive-font text-6xl md:text-8xl text-primary mb-6 animate-heartbeat"
-              speed={100}
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center justify-center relative px-4">
+        <div className="text-center max-w-4xl mx-auto animate-slide-up">
+          <div className="mb-8 relative">
+            <img 
+              src={heroPortrait} 
+              alt="Birthday Girl" 
+              className="w-64 h-80 object-cover rounded-3xl mx-auto magical-glow animate-float"
             />
-            
-            <div className="flex items-center justify-center gap-3 mb-8">
-              <Star className="w-8 h-8 text-gold animate-sparkle" />
-              <TypewriterText 
-                text="[Insert Name]"
-                className="elegant-font text-4xl md:text-5xl text-secondary"
-                speed={80}
-                delay={2000}
-              />
-              <Star className="w-8 h-8 text-gold animate-sparkle" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute -top-4 -right-4 animate-sparkle">
+              <Sparkles className="w-8 h-8 text-gold" />
             </div>
-            
-            <div className="flex items-center justify-center gap-4">
-              <Cake className="w-6 h-6 text-primary" />
-              <TypewriterText 
-                text="Celebrating another year of wonderful you! 🎉"
-                className="text-xl md:text-2xl text-muted-foreground"
-                speed={60}
-                delay={4000}
-              />
-              <Gift className="w-6 h-6 text-accent" />
+            <div className="absolute -bottom-4 -left-4 animate-sparkle" style={{ animationDelay: '1s' }}>
+              <Heart className="w-8 h-8 text-primary" />
             </div>
           </div>
-        </section>
-      </ParallaxSection>
+          
+          <h1 className="cursive-font text-6xl md:text-8xl text-primary mb-6 animate-heartbeat">
+            Happy Birthday!
+          </h1>
+          
+          <div className="flex items-center justify-center gap-3 mb-8">
+            <Star className="w-8 h-8 text-gold animate-sparkle" />
+            <h2 className="elegant-font text-4xl md:text-5xl text-secondary">
+              [Insert Name]
+            </h2>
+            <Star className="w-8 h-8 text-gold animate-sparkle" style={{ animationDelay: '0.5s' }} />
+          </div>
+          
+          <div className="flex items-center justify-center gap-4">
+            <Cake className="w-6 h-6 text-primary" />
+            <p className="text-xl md:text-2xl text-muted-foreground">
+              Celebrating another year of wonderful you! 🎉
+            </p>
+            <Gift className="w-6 h-6 text-accent" />
+          </div>
+        </div>
+      </section>
 
-      {/* Enhanced Photo Gallery Section */}
-      <ParallaxSection speed={0.5}>
-        <section className="py-20 px-4">
-          <div className="max-w-6xl mx-auto">
-            <div className="text-center mb-16">
-              <Camera className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="cursive-font text-5xl text-primary mb-4">Magical Memories</h2>
-              <p className="text-xl text-muted-foreground">A collection of beautiful moments</p>
-            </div>
-            
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-              {galleryImages.map((image, index) => (
-                <MagicalPhotoFrame
-                  key={index}
-                  src={image}
-                  alt={`Memory ${index + 1}`}
-                  className="animate-slide-up"
-                />
-              ))}
-            </div>
-            
-            <div className="text-center">
-              <Card className="inline-block card-gradient magical-shadow p-6 animate-float">
-                <div className="flex items-center gap-4">
-                  <MagicalPhotoFrame 
-                    src={galleryImages[currentImageIndex]} 
-                    alt="Featured"
-                    size="sm"
-                  />
-                  <div>
-                    <h3 className="cursive-font text-2xl text-primary mb-2">Featured Moment</h3>
-                    <p className="text-muted-foreground">Auto-changing slideshow</p>
-                  </div>
-                </div>
-              </Card>
-            </div>
+      {/* Photo Gallery Section */}
+      <section className="py-20 px-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <Camera className="w-12 h-12 text-primary mx-auto mb-4" />
+            <h2 className="cursive-font text-5xl text-primary mb-4">Magical Memories</h2>
+            <p className="text-xl text-muted-foreground">A collection of beautiful moments</p>
           </div>
-        </section>
-      </ParallaxSection>
+          
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
+            {galleryImages.map((image, index) => (
+              <Card key={index} className="overflow-hidden magical-shadow hover:magical-glow transition-all duration-500 transform hover:scale-105 animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
+                <CardContent className="p-0">
+                  <img 
+                    src={image} 
+                    alt={`Memory ${index + 1}`}
+                    className="w-full h-48 object-cover"
+                  />
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          <div className="text-center">
+            <Card className="inline-block card-gradient magical-shadow p-6 animate-float">
+              <div className="flex items-center gap-4">
+                <img 
+                  src={galleryImages[currentImageIndex]} 
+                  alt="Featured" 
+                  className="w-32 h-32 object-cover rounded-full"
+                />
+                <div>
+                  <h3 className="cursive-font text-2xl text-primary mb-2">Featured Moment</h3>
+                  <p className="text-muted-foreground">Auto-changing slideshow</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </div>
+      </section>
 
       {/* Personal Wishes Section */}
       <section className="py-20 px-4 bg-gradient-to-b from-transparent to-muted/30">
@@ -195,64 +175,46 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Memories Timeline with Flip Cards */}
-      <ParallaxSection speed={0.2}>
-        <section className="py-20 px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-16">
-              <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
-              <h2 className="cursive-font text-5xl text-primary mb-4">Journey Through Time</h2>
-              <p className="text-xl text-muted-foreground">Beautiful years, beautiful memories</p>
-            </div>
+      {/* Memories Timeline */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
+            <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
+            <h2 className="cursive-font text-5xl text-primary mb-4">Journey Through Time</h2>
+            <p className="text-xl text-muted-foreground">Beautiful years, beautiful memories</p>
+          </div>
+          
+          <div className="relative">
+            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-lavender to-gold rounded-full"></div>
             
-            <div className="relative">
-              <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-lavender to-gold rounded-full"></div>
-              
-              <div className="space-y-12">
-                {timelineMemories.map((memory, index) => (
-                  <div key={index} className="relative flex items-start gap-8 animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                    <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center magical-glow text-primary-foreground font-bold text-lg z-10">
-                      {memory.year}
-                    </div>
-                    
-                    <FlipCard 
-                      frontContent={
-                        <div className="p-6">
-                          <h3 className="cursive-font text-2xl text-primary mb-4">{memory.title}</h3>
-                          <div className="grid grid-cols-2 gap-4">
-                            {memory.images.map((image, imgIndex) => (
-                              <MagicalPhotoFrame 
-                                key={imgIndex}
-                                src={image}
-                                alt={`${memory.title} ${imgIndex + 1}`}
-                                size="sm"
-                              />
-                            ))}
-                          </div>
-                        </div>
-                      }
-                      backContent={
-                        <div className="p-6 h-full flex items-center justify-center">
-                          <div className="text-center">
-                            <Sparkles className="w-12 h-12 text-primary mx-auto mb-4 animate-sparkle" />
-                            <h4 className="cursive-font text-xl text-primary mb-3">Special Moments</h4>
-                            <p className="text-muted-foreground">
-                              Each year brought new adventures, wonderful memories, and beautiful growth. 
-                              These moments shaped the amazing person you've become! ✨
-                            </p>
-                            <Heart className="w-6 h-6 text-lavender mx-auto mt-4 animate-heartbeat" />
-                          </div>
-                        </div>
-                      }
-                      className="flex-1"
-                    />
+            <div className="space-y-12">
+              {timelineMemories.map((memory, index) => (
+                <div key={index} className="relative flex items-start gap-8 animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
+                  <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center magical-glow text-primary-foreground font-bold text-lg z-10">
+                    {memory.year}
                   </div>
-                ))}
-              </div>
+                  
+                  <Card className="card-gradient magical-shadow flex-1 p-6">
+                    <CardContent>
+                      <h3 className="cursive-font text-2xl text-primary mb-4">{memory.title}</h3>
+                      <div className="grid grid-cols-2 gap-4">
+                        {memory.images.map((image, imgIndex) => (
+                          <img 
+                            key={imgIndex}
+                            src={image} 
+                            alt={`${memory.title} ${imgIndex + 1}`}
+                            className="w-full h-32 object-cover rounded-lg"
+                          />
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </div>
+              ))}
             </div>
           </div>
-        </section>
-      </ParallaxSection>
+        </div>
+      </section>
 
       {/* Friends & Family Messages */}
       <section className="py-20 px-4 bg-gradient-to-b from-muted/30 to-transparent">
