@@ -2,41 +2,69 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Magical Birthday Design System - All colors, gradients, fonts, animations
+All colors MUST be HSL for the magical pastel theme.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Magical Pastel Color Palette */
+    --background: 330 100% 98%; /* Very light pink */
+    --foreground: 260 15% 25%; /* Soft dark purple */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 260 15% 25%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 260 15% 25%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Magical Pink Theme */
+    --primary: 320 65% 75%; /* Soft pink */
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 320 85% 85%; /* Lighter pink for glow */
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Lavender Accents */
+    --secondary: 260 50% 85%; /* Soft lavender */
+    --secondary-foreground: 260 25% 30%;
+    --lavender: 260 60% 80%;
+    --lavender-light: 260 70% 90%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Soft Gold Highlights */
+    --accent: 45 85% 80%; /* Soft gold */
+    --accent-foreground: 45 25% 25%;
+    --gold: 45 90% 75%;
+    --gold-light: 45 95% 85%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Muted Pastels */
+    --muted: 330 30% 95%;
+    --muted-foreground: 260 10% 45%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 70% 70%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 330 25% 90%;
+    --input: 330 25% 95%;
+    --ring: 320 65% 75%;
 
-    --radius: 0.5rem;
+    --radius: 1rem;
+
+    /* Magical Gradients */
+    --gradient-magical: linear-gradient(135deg, hsl(320 65% 85%), hsl(260 60% 85%), hsl(45 85% 85%));
+    --gradient-hero: linear-gradient(180deg, hsl(320 70% 90%) 0%, hsl(260 65% 90%) 50%, hsl(45 80% 90%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(0 0% 100% / 0.8), hsl(320 30% 98% / 0.9));
+    --gradient-button: linear-gradient(135deg, hsl(320 65% 75%), hsl(320 75% 80%));
+    --gradient-glow: radial-gradient(circle at center, hsl(320 85% 85% / 0.3), transparent);
+
+    /* Magical Shadows & Glows */
+    --shadow-magical: 0 8px 32px hsl(320 65% 75% / 0.2), 0 4px 16px hsl(260 60% 80% / 0.1);
+    --shadow-glow: 0 0 20px hsl(320 85% 85% / 0.4), 0 0 40px hsl(320 85% 85% / 0.2);
+    --shadow-card: 0 4px 20px hsl(320 30% 70% / 0.15);
+    --shadow-float: 0 12px 40px hsl(320 65% 75% / 0.25), 0 6px 20px hsl(260 60% 80% / 0.15);
+
+    /* Animation Timing */
+    --transition-magical: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    --transition-float: all 3s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +84,15 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Magical Evening Theme (if needed) */
+    --background: 260 30% 8%;
+    --foreground: 330 70% 95%;
+    --primary: 320 70% 70%;
+    --primary-glow: 320 80% 75%;
+    --secondary: 260 50% 25%;
+    --accent: 45 80% 70%;
+    --gradient-magical: linear-gradient(135deg, hsl(320 60% 20%), hsl(260 50% 25%), hsl(45 70% 30%));
+    --shadow-magical: 0 8px 32px hsl(320 70% 70% / 0.3);
   }
 }
 
@@ -101,5 +103,101 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+}
+
+/* Magical Animations & Effects */
+@layer components {
+  .magical-gradient {
+    background: var(--gradient-magical);
+  }
+  
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+  
+  .card-gradient {
+    background: var(--gradient-card);
+  }
+  
+  .magical-shadow {
+    box-shadow: var(--shadow-magical);
+  }
+  
+  .magical-glow {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .floating-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .cursive-font {
+    font-family: 'Pacifico', cursive;
+  }
+  
+  .elegant-font {
+    font-family: 'Great Vibes', cursive;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+@keyframes balloon-float {
+  0% {
+    transform: translateY(100vh) rotate(-2deg);
+  }
+  100% {
+    transform: translateY(-100vh) rotate(2deg);
+  }
+}
+
+@keyframes sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heartbeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
