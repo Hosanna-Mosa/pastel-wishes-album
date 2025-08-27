@@ -1,28 +1,51 @@
 import { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import { Heart, Star, Cake, Sparkles, Gift, Music, Camera, Users, Clock, MessageCircle } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
+import { ParallaxScrollSecond } from '@/components/ui/parallax-scroll';
 import { Button } from '@/components/ui/button';
 import MagicalConfetti from '@/components/MagicalConfetti';
 import FloatingBalloons from '@/components/FloatingBalloons';
+import { StackSwipeGallery } from '@/components/ui/stack-swipe-gallery';
 
 // Import all the magical images
-import heroPortrait from '@/assets/hero-portrait.jpg';
+import heroPortrait from '@/assets/wishes-img/wishes-imgs/IMG_20250827_210424.png'
 import birthdayCake from '@/assets/birthday-cake.jpg';
 import balloons from '@/assets/balloons.jpg';
 import memory1 from '@/assets/memory-1.jpg';
 import memory2 from '@/assets/memory-2.jpg';
 import flowers from '@/assets/flowers.jpg';
 import sunset from '@/assets/sunset.jpg';
+import img1 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_210424.png'
+import img2 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_222914.png'
+import img3 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_223016.png'
+import img4 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_223108.png'
+import img5 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_223330.jpg'
+import img6 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_223345.png'
+import img7 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_223406.png'
+import img8 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_224356.jpg'
+import img9 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_224415.jpg'
+import img10 from '@/assets/wishes-img/wishes-imgs/Screenshot_2025-08-27-20-30-26-91_1c337646f29875672b5a61192b9010f9.jpg'
+import img11 from '@/assets/wishes-img/wishes-imgs/Screenshot_2025-08-27-20-40-10-92_1c337646f29875672b5a61192b9010f9.png'
+import img12 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_224346.jpg'
+import img13 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_224356.jpg'
+import img14 from '@/assets/wishes-img/wishes-imgs/IMG_20250827_224346.jpg'
 
 const Index = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showConfetti, setShowConfetti] = useState(true);
 
-  const galleryImages = [
-    heroPortrait, birthdayCake, balloons, memory1, memory2, flowers, sunset,
-    heroPortrait, birthdayCake, balloons, memory1, memory2, flowers, sunset,
-    heroPortrait, birthdayCake
+  const allGalleryImages = [
+    img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11, img12, img13, img14, img5, img2
   ];
+
+  // Filter out specific indexes: 1, 4, 6, and last index
+  const excludedIndexes = [1, 4, 6, allGalleryImages.length - 1];
+  const galleryImages = allGalleryImages.filter((_, index) => !excludedIndexes.includes(index));
+
+  // Additional filter for parallax: exclude indexes 6 and 7
+  const parallaxExcludedIndexes = [9,10];
+  const parallaxImages = allGalleryImages.filter((_, index) => !parallaxExcludedIndexes.includes(index));
 
   const personalWishes = [
     "May your special day be filled with all the joy your heart can hold! 🎂",
@@ -91,7 +114,7 @@ const Index = () => {
           <div className="flex items-center justify-center gap-3 mb-8">
             <Star className="w-8 h-8 text-gold animate-sparkle" />
             <h2 className="elegant-font text-4xl md:text-5xl text-secondary">
-              [Insert Name]
+              [Twisha]
             </h2>
             <Star className="w-8 h-8 text-gold animate-sparkle" style={{ animationDelay: '0.5s' }} />
           </div>
@@ -103,6 +126,27 @@ const Index = () => {
             </p>
             <Gift className="w-6 h-6 text-accent" />
           </div>
+          
+          {/* Scroll down tutorial */}
+          <motion.div 
+            className="absolute bottom-8 left-0 right-0 mx-auto text-center"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ 
+              delay: 2,
+              duration: 1,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          >
+            <div className="bg-background/80 backdrop-blur-sm px-4 py-2 rounded-full border border-primary/30 inline-block">
+              <p className="text-sm text-primary font-medium flex items-center gap-2 justify-center">
+                <span className="animate-bounce">↓</span>
+                Scroll down to explore more
+                <span className="animate-bounce">↓</span>
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -115,18 +159,14 @@ const Index = () => {
             <p className="text-xl text-muted-foreground">A collection of beautiful moments</p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-8">
-            {galleryImages.map((image, index) => (
-              <Card key={index} className="overflow-hidden magical-shadow hover:magical-glow transition-all duration-500 transform hover:scale-105 animate-slide-up" style={{ animationDelay: `${index * 0.1}s` }}>
-                <CardContent className="p-0">
-                  <img 
-                    src={image} 
-                    alt={`Memory ${index + 1}`}
-                    className="w-full h-48 object-cover"
-                  />
-                </CardContent>
-              </Card>
-            ))}
+          {/* Mobile swipe stack */}
+          <div className="md:hidden mb-8 flex justify-center">
+            <StackSwipeGallery images={galleryImages} />
+          </div>
+
+          {/* Desktop parallax experience */}
+          <div className="hidden md:block mb-8">
+            <ParallaxScrollSecond images={parallaxImages} />
           </div>
           
           <div className="text-center">
@@ -175,80 +215,8 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Memories Timeline */}
-      <section className="py-20 px-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
-            <Clock className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="cursive-font text-5xl text-primary mb-4">Journey Through Time</h2>
-            <p className="text-xl text-muted-foreground">Beautiful years, beautiful memories</p>
-          </div>
-          
-          <div className="relative">
-            <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-lavender to-gold rounded-full"></div>
-            
-            <div className="space-y-12">
-              {timelineMemories.map((memory, index) => (
-                <div key={index} className="relative flex items-start gap-8 animate-slide-up" style={{ animationDelay: `${index * 0.2}s` }}>
-                  <div className="flex-shrink-0 w-16 h-16 bg-primary rounded-full flex items-center justify-center magical-glow text-primary-foreground font-bold text-lg z-10">
-                    {memory.year}
-                  </div>
-                  
-                  <Card className="card-gradient magical-shadow flex-1 p-6">
-                    <CardContent>
-                      <h3 className="cursive-font text-2xl text-primary mb-4">{memory.title}</h3>
-                      <div className="grid grid-cols-2 gap-4">
-                        {memory.images.map((image, imgIndex) => (
-                          <img 
-                            key={imgIndex}
-                            src={image} 
-                            alt={`${memory.title} ${imgIndex + 1}`}
-                            className="w-full h-32 object-cover rounded-lg"
-                          />
-                        ))}
-                      </div>
-                    </CardContent>
-                  </Card>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+  
 
-      {/* Friends & Family Messages */}
-      <section className="py-20 px-4 bg-gradient-to-b from-muted/30 to-transparent">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <Users className="w-12 h-12 text-primary mx-auto mb-4" />
-            <h2 className="cursive-font text-5xl text-primary mb-4">Love from Everyone</h2>
-            <p className="text-xl text-muted-foreground">Messages from those who care about you</p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {friendsMessages.map((message, index) => (
-              <Card key={index} className="card-gradient magical-shadow p-6 transform rotate-1 hover:rotate-0 transition-all duration-500 animate-slide-up" 
-                    style={{ 
-                      animationDelay: `${index * 0.1}s`,
-                      transform: `rotate(${(index % 2 === 0 ? 1 : -1) * (Math.random() * 3 + 1)}deg)`
-                    }}>
-                <CardContent>
-                  <div className="flex items-center gap-2 mb-4">
-                    <MessageCircle className={`w-5 h-5 text-${message.color}`} />
-                    <h4 className="font-semibold text-lg text-foreground">{message.name}</h4>
-                  </div>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {message.message}
-                  </p>
-                  <div className="flex justify-end mt-4">
-                    <Heart className={`w-4 h-4 text-${message.color} animate-heartbeat`} />
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Ending Section */}
       <section className="py-32 px-4 text-center">
@@ -261,7 +229,7 @@ const Index = () => {
             />
             
             <h2 className="elegant-font text-5xl md:text-6xl text-primary mb-8 animate-heartbeat">
-              Wishing you endless joy, love, and success ahead 💖
+              Wishing you endless joy, love  💖
             </h2>
             
             <div className="flex items-center justify-center gap-6 mb-8">
@@ -278,10 +246,10 @@ const Index = () => {
             </p>
             
             <Button 
-              size="lg" 
-              className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-xl rounded-full magical-shadow animate-magical-bounce"
+              size="default" 
+              className="bg-primary hover:bg-primary/90 text-primary-foreground px-6 py-3 text-md rounded-full magical-shadow animate-magical-bounce"
             >
-              🎉 Happy Birthday Again! 🎉
+              🎉 Once Again Happy Birthday Teacher ! 🎉
             </Button>
           </div>
         </div>
